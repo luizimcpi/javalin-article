@@ -1,8 +1,8 @@
 package web
 
 import dao.CarDAO
-import exception.NotFoundException
 import io.javalin.Context
+import io.javalin.NotFoundResponse
 import model.Car
 
 object CarController {
@@ -24,7 +24,7 @@ object CarController {
         try{
             ctx.json(carDAO.cars[ctx.pathParam(":id").toInt()])
         }catch (e: IndexOutOfBoundsException){
-            throw NotFoundException("Car Not Found")
+            throw NotFoundResponse("Car Not Found")
         }
     }
 }
