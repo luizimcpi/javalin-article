@@ -6,7 +6,12 @@ import web.HealthController
 
 fun main(args: Array<String>) {
 
-    val app = Javalin.create().start(7000)
+    val app = Javalin.create().apply {
+        exception(NotFoundException::class.java) { e, ctx ->
+            ctx.status(404)
+            ctx.json(mapOf("error" to e.message!!))
+        }
+    }.start(7000)
 
     app.routes {
         path("health") {
