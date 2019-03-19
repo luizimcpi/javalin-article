@@ -22,6 +22,7 @@ fun main(args: Array<String>) {
             post(CarController::createCar)
             path(":id"){
                 get(CarController::getCarById)
+                patch(CarController::updateCar)
             }
         }
     }

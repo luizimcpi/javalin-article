@@ -17,14 +17,23 @@ object CarController {
     }
 
     fun getAllCars(ctx: Context) {
-        ctx.json(carDAO.cars)
+        ctx.json(carDAO.cars.toList())
     }
 
     fun getCarById(ctx: Context) {
         try{
-            ctx.json(carDAO.cars[ctx.pathParam(":id").toInt()])
-        }catch (e: IndexOutOfBoundsException){
+            ctx.json(carDAO.findById(ctx.pathParam(":id").toInt())!!)
+        }catch (e: Exception){
             throw NotFoundException("Car Not Found")
         }
+    }
+
+    fun updateCar(ctx: Context){
+        val car = ctx.body<Car>()
+        carDAO.update(
+            id = ctx.pathParam(":id").toInt(),
+            car = car
+        )
+        ctx.status(204)
     }
 }
