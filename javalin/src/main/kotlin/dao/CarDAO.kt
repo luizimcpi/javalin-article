@@ -24,4 +24,8 @@ class CarDAO {
     fun findById(id: Int): Car? {
         return cars[id]
     }
+
+    fun delete(id: Int) {
+        cars.remove(id)
+    }
 }

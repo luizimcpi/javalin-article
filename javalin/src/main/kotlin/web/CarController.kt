@@ -36,4 +36,9 @@ object CarController {
         )
         ctx.status(204)
     }
+
+    fun deleteCar(ctx: Context){
+        carDAO.delete(ctx.pathParam(":id").toInt())
+        ctx.status(204)
+    }
 }

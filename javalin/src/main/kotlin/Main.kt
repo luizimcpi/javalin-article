@@ -23,6 +23,7 @@ fun main(args: Array<String>) {
             path(":id"){
                 get(CarController::getCarById)
                 patch(CarController::updateCar)
+                delete(CarController::deleteCar)
             }
         }
     }
